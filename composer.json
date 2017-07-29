@@ -1,0 +1,25 @@
+{
+    "name": "tinytools/tiny.pictures-php",
+    "description": "PHP library for the tiny.pictures responsive image service",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tiny Tools Microservices GmbH",
+            "email": "team@1336.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "test": "phpunit src/TinyPicturesTest.php"
+    },
+    "autoload": {
+        "psr-4": {"TinyPictures\\" : "src/"}
+    },
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
+    }
+}
