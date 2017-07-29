@@ -20,15 +20,14 @@ class TinyPictures {
     }
 
     public function __construct(array $options) {
-        // validations
-        if (!$options['user']) {
+        if (!isset($options['user']) || !$options['user']) {
             throw new \Exception('No user set');
         }
-
         $this->user = $options['user'];
-        $this->protocol = $options['protocol'] ?: 'https';
+        $this->protocol = isset($options['protocol']) && $options['protocol'] ? $options['protocol'] : 'https';
+        $this->namedSources = isset($options['namedSources']) && $options['namedSources'] ? $options['namedSources'] : [];
+
         $this->baseUrl = $this->protocol . '://' . $this->user . '.tiny.pictures/';
-        $this->namedSources = $options['namedSources'] ?: [];
     }
 
     public function url(string $source, array $options = []) {

@@ -20,23 +20,30 @@ class TinyPicturesTest extends \PHPUnit\Framework\TestCase {
         $this->assertSame('https://tiny.pictures/', $tinyPictures->getNamedSources()['main']);
     }
 
-    public function testConstructWithoutUser() {
+    public function testConstructWithNullUser() {
         $options = $this->defaultOptions;
         $options['user'] = null;
         $this->expectException(\Exception::class);
         $tinyPictures = new TinyPictures($options);
     }
 
+    public function testConstructWithoutUser() {
+        $options = $this->defaultOptions;
+        unset($options['user']);
+        $this->expectException(\Exception::class);
+        $tinyPictures = new TinyPictures($options);
+    }
+
     public function testConstructWithoutProtocol() {
         $options = $this->defaultOptions;
-        $options['protocol'] = null;
+        unset($options['protocol']);
         $tinyPictures = new TinyPictures($options);
         $this->assertSame('https', $tinyPictures->getProtocol());
     }
 
     public function testConstructWithoutNamedSources() {
         $options = $this->defaultOptions;
-        $options['namedSources'] = null;
+        unset($options['namedSources']);
         $tinyPictures = new TinyPictures($options);
         $this->assertSame([], $tinyPictures->getNamedSources());
     }
